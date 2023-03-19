@@ -13,5 +13,5 @@ app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)());
 app.use(index_1.default);
-app.listen(8000, () => console.log("Listening on http://localhost:8000"));
+app.listen(8000, () => console.log("Listening on https://web-server-hmw0.onrender.com"));
 (0, connection_1.connectToDB)();

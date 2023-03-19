@@ -11,6 +11,6 @@ app.use(cors())
 
 app.use(router)
 
-app.listen(8000, () => console.log("Listening on http://localhost:8000"));
+app.listen(8000, () => console.log("Listening on https://web-server-hmw0.onrender.com"));
 
 connectToDB()
