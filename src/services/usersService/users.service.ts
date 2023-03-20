@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs'
 import { IUser, UserModel } from '../../models/UsersModel'
 
-import jwt from 'jsonwebtoken';
-const JWT_SECRET = "iosjhfsoduyfieyuirytuiriyfhjcvbcxbvjhxbgcks"
+import jwt from 'jsonwebtoken'
+const JWT_SECRET = 'iosjhfsoduyfieyuirytuiriyfhjcvbcxbvjhxbgcks'
 
 export const getUsers = async () => {
   try {
@@ -47,47 +47,37 @@ export const createUser = async (user: IUser) => {
 
     const savedUser = await newUser.save()
     return savedUser
-
   } catch (e) {
     throw new Error('Error while creating new user')
   }
 }
 
 export const checkUserforLogIn = async (user: IUser) => {
-
   const { email, password } = user
-  
-  try { 
+
+  try {
     const loginUser = await UserModel.findOne({ email })
     if (!loginUser) {
       throw new Error('User Not found')
     }
-    if(await bcrypt.compare(password, loginUser?.password)) {
-      const token = jwt.sign({},JWT_SECRET)
+    if (await bcrypt.compare(password, loginUser?.password)) {
+      const token = jwt.sign({}, JWT_SECRET)
       return token
     }
-
   } catch (e) {
     throw new Error('Error while creating new user')
   }
 }
 
-// export const getUserData = async (userToken: any) => {
-//   const { token } = userToken
+export const getUserData = async (userToken: any) => {
+  const { token } = userToken
 
-//   try {
-//     const user = jwt.verify(token,JWT_SECRET)
-//   } catch (e) {
-//     throw new Error('Error while getting user data by token')
-//   }
-// }
-
-
-// export const getLastUser = async () => {
-//   try {
-//     const lastUser = await UserModel.findOne().sort({ _id: -1 }).limit(1)
-//     return lastUser
-//   } catch (e) {
-//     throw Error(`Error while paginating the last User`)
-//   }
-// }
+  try {
+    const user = jwt.verify(token, JWT_SECRET)
+    userToken = user
+    const userEmail = userToken.email
+    return UserModel.findOne({ email: userEmail })
+  } catch (e) {
+    throw new Error('Error while getting user data by token')
+  }
+}

@@ -4,7 +4,7 @@ import {
   checkUserforLogIn,
   createUser,
   deleteUser,
-//   getUserData,
+  getUserData,
   getUsers,
 } from '../../services/usersService/users.service'
 
@@ -30,7 +30,7 @@ export const saveUser = async (req: Request, res: Response) => {
   try {
     const savedUser: IUser = await createUser(req.body)
     return res.status(201).json(savedUser)
-  } catch (e:any) {
+  } catch (e: any) {
     return res.status(400).json({ error: e.message })
   }
 }
@@ -45,21 +45,11 @@ export const login = async (req: Request, res: Response) => {
   }
 }
 
-// export const userData = async (req: Request, res: Response) => {
-//     try {
-//         const user = await getUserData(req.body)
-//         return res.send({status: "ok", data: user})
-//     } catch (e: any) {
-//         return res.status(400).json({ error: e.message })
-//     }
-// }
-
-// export const getLastUser = async (req: Request, res: Response) => {
-//     try {
-//         const lastUser = await getUser()
-//         return res.status(200)
-//         .json(lastUser)
-//     } catch (e: any) {
-//         throw e;
-//     }
-// }
+export const userData = async (req: Request, res: Response) => {
+  try {
+    const user = await getUserData(req.body)
+    return res.send({ status: 'ok', data: user })
+  } catch (e:any) {
+    return res.status(400).json({ error: e.message })
+  }
+}
