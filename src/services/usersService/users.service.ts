@@ -61,7 +61,7 @@ export const checkUserforLogIn = async (user: IUser) => {
       throw new Error('User Not found')
     }
     if (await bcrypt.compare(password, loginUser?.password)) {
-      const token = jwt.sign({}, JWT_SECRET)
+      const token = jwt.sign({email:user.email}, JWT_SECRET)
       return token
     }
   } catch (e) {

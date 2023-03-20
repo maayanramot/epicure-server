@@ -66,20 +66,3 @@ const createUser = async (user) => {
   }
 }
 exports.createUser = createUser
-
-// export const checkUserforLogIn = async (user: IUser) => {
-//   const { email, password } = user
-//   try {
-//     const loginUser = await UserModel.findOne({ email })
-//     if (!loginUser) {
-//       throw new Error('User Not found')
-//     }
-//     if(await bcrypt.compare(password, loginUser?.password)) {
-//       const token = jwt.sign({},JWT_SECRET)
-//       console.log(token , "ok")
-//       return loginUser
-//     }
-//   } catch (e) {
-//     throw new Error('Error while creating new user')
-//   }
-// }
