@@ -34,17 +34,6 @@ const deleteUser = async (id) => {
 }
 exports.deleteUser = deleteUser
 
-// const getLastUser = async () => {
-//     try {
-//         const lastUser = await UsersModel_1.UserModel.findOne().sort({ _id: -1 }).limit(1);
-//         return lastUser;
-//     }
-//     catch (e) {
-//         throw Error(`Error while paginating the last User`);
-//     }
-// };
-// exports.getLastUser = getLastUser;
-
 const createUser = async (user) => {
   const { firstName, lastName, email, password } = user
   const encryptedPassword = await bcryptjs_1.default.hash(password, 10)
