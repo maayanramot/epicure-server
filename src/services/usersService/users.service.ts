@@ -22,7 +22,7 @@ export const deleteUser = async (id: string) => {
       console.log(user, 'User deleted')
     }
   } catch (e) {
-    throw Error('Error while tring delete User')
+    throw Error('Error while trying delete User')
   }
 }
 
